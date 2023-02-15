@@ -1,5 +1,8 @@
 {
   "item.rgbuild.spectrium_shard": "Spectrium Shard",
 
-  "itemGroup.rgbuildtab": "RGBuild"
+  "block.rgbuild.spectrium_ore": "Spectrium Ore",
+  "block.rgbuild.spectrium_block": "Block of Spectrium",
+
+  "creativemodetab.rgbuild_tab": "RGBuild"
 }

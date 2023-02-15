@@ -3,6 +3,7 @@ package net.onatparagus.rgbuild;
 import com.mojang.logging.LogUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -13,6 +14,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.event.CreativeModeTabEvent;
+import net.onatparagus.rgbuild.block.ModBlocks;
+import net.onatparagus.rgbuild.block.ModCreativeModeTab;
 import net.onatparagus.rgbuild.item.ModItems;
 import org.slf4j.Logger;
 
@@ -40,6 +43,7 @@ public class RGBuild
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
 
 
@@ -55,7 +59,7 @@ public class RGBuild
         MinecraftForge.EVENT_BUS.register(this);
 
         // Register the item to a creative tab
-        modEventBus.addListener(this::addCreativeTab);
+        modEventBus.addListener(this::addCreative);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -65,13 +69,26 @@ public class RGBuild
         LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));*/
     }
 
-    /*    private void addCreative(CreativeModeTabEvent.BuildContents event)
+    private void addCreative(CreativeModeTabEvent.BuildContents event)
     {
-        if (event.getTab() == ModCreativeModeTab.RGBUILD_TAB)
+        if (event.getTab() == ModCreativeModeTab.RGBUILD_TAB){
             event.accept(ModItems.SPECTRIUM_SHARD);
-    }*/
+            event.accept(ModBlocks.SPECTRIUM_ORE);
+            event.accept(ModBlocks.SPECTRIUM_BLOCK);
+        }
 
-    public void addCreativeTab(CreativeModeTabEvent.Register event) {
+        if (event.getTab() == CreativeModeTabs.INGREDIENTS){
+            event.accept(ModItems.SPECTRIUM_SHARD);
+        }
+        if (event.getTab() == CreativeModeTabs.NATURAL_BLOCKS){
+            event.accept(ModBlocks.SPECTRIUM_ORE);
+        }
+        if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS){
+            event.accept(ModBlocks.SPECTRIUM_BLOCK);
+        }
+    }
+
+    /*public void addCreativeTab(CreativeModeTabEvent.Register event) {
         event.registerCreativeModeTab(new ResourceLocation(MOD_ID, "tab"), builder ->
 
                 builder.title(Component.translatable("RGBuild"))
@@ -82,7 +99,7 @@ public class RGBuild
                             populator.accept(ModItems.SPECTRIUM_SHARD.get());
                         })
         );
-    }
+    }*/
 /*
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent

@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": {"model": "rgbuild:block/spectrium_block"}
+  }
+}
