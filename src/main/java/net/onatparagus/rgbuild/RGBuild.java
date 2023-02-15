@@ -1,6 +1,9 @@
 package net.onatparagus.rgbuild;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -10,6 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.event.CreativeModeTabEvent;
+import net.onatparagus.rgbuild.item.ModItems;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -35,6 +39,10 @@ public class RGBuild
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModItems.register(modEventBus);
+
+
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -47,7 +55,7 @@ public class RGBuild
         MinecraftForge.EVENT_BUS.register(this);
 
         // Register the item to a creative tab
-        modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(this::addCreativeTab);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -57,10 +65,23 @@ public class RGBuild
         LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));*/
     }
 
-    private void addCreative(CreativeModeTabEvent.BuildContents event)
+    /*    private void addCreative(CreativeModeTabEvent.BuildContents event)
     {
-        /*if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS)
-            event.accept(EXAMPLE_BLOCK_ITEM);*/
+        if (event.getTab() == ModCreativeModeTab.RGBUILD_TAB)
+            event.accept(ModItems.SPECTRIUM_SHARD);
+    }*/
+
+    public void addCreativeTab(CreativeModeTabEvent.Register event) {
+        event.registerCreativeModeTab(new ResourceLocation(MOD_ID, "tab"), builder ->
+
+                builder.title(Component.translatable("RGBuild"))
+
+                        .icon(() -> new ItemStack(ModItems.SPECTRIUM_SHARD.get()))
+
+                        .displayItems((enabledFlags, populator, hasPermissions) -> {
+                            populator.accept(ModItems.SPECTRIUM_SHARD.get());
+                        })
+        );
     }
 /*
     // You can use SubscribeEvent and let the Event Bus discover methods to call
