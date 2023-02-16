@@ -74,6 +74,7 @@ public class RGBuild
         if (event.getTab() == ModCreativeModeTab.RGBUILD_TAB){
             event.accept(ModItems.SPECTRIUM_SHARD);
             event.accept(ModBlocks.SPECTRIUM_ORE);
+            event.accept(ModBlocks.DEEPSLATE_SPECTRIUM_ORE);
             event.accept(ModBlocks.SPECTRIUM_BLOCK);
         }
 
@@ -82,6 +83,7 @@ public class RGBuild
         }
         if (event.getTab() == CreativeModeTabs.NATURAL_BLOCKS){
             event.accept(ModBlocks.SPECTRIUM_ORE);
+            event.accept(ModBlocks.DEEPSLATE_SPECTRIUM_ORE);
         }
         if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS){
             event.accept(ModBlocks.SPECTRIUM_BLOCK);

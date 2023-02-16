@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rgbuild:block/deepslate_spectrium_ore"
+  }
+}

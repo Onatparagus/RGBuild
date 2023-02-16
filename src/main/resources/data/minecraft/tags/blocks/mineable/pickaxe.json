@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "rgbuild:spectrium_ore",
+    "rgbuild:deepslate_spectrium_ore",
+    "rgbuild:spectrium_block"
+  ]
+}
