@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "spectrium",
+  "ingredients": [
+    {
+      "item": "rgbuild:spectrium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "rgbuild:spectrium_shard"
+  }
+}
