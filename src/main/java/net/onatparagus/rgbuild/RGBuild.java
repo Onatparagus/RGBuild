@@ -1,11 +1,21 @@
 package net.onatparagus.rgbuild;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.FoliageColor;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,7 +27,10 @@ import net.minecraftforge.event.CreativeModeTabEvent;
 import net.onatparagus.rgbuild.block.ModBlocks;
 import net.onatparagus.rgbuild.block.ModCreativeModeTab;
 import net.onatparagus.rgbuild.item.ModItems;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
+
+import static net.minecraft.world.level.biome.Biomes.PLAINS;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(RGBuild.MOD_ID)
@@ -44,6 +57,8 @@ public class RGBuild
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+
 
 
 
@@ -121,6 +136,29 @@ public class RGBuild
             /*// Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());*/
+
         }
+        @SubscribeEvent
+        public static void registerBlockColors(RegisterColorHandlersEvent.Block event){
+            event.getBlockColors().register(new BlockColor() {
+                @Override
+                public int getColor(BlockState p_92567_, @Nullable BlockAndTintGetter p_92568_, @Nullable BlockPos p_92569_, int p_92570_) {
+                    return 8431445;
+                }
+                    },ModBlocks.SPECTRIUM_BLOCK.get());
+        }
+
     }
+/*
+    @Mod.EventBusSubscriber(value = Dist.CLIENT)
+    public static class RegistryEvents {
+        @SubscribeEvent
+        public static void registerBlockColors(final RegisterColorHandlersEvent.Block event){ //this event is never fired
+            event.getBlockColors().register(
+                    (s,w,p,i) -> {
+                        return FoliageColor.getBirchColor();
+                    },ModBlocks.SPECTRIUM_BLOCK.get());
+        }
+        //other SubscribeEvents are in here
+    }*/
 }

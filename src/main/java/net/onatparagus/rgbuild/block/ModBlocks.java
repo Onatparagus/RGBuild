@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -32,7 +33,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> SPECTRIUM_BLOCK = registerBlock("spectrium_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST)
-                    .strength(2f).requiresCorrectToolForDrops()));
+                    .strength(2f).requiresCorrectToolForDrops().lightLevel(ModBlocks::fullLight)));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name,block);
@@ -47,5 +48,9 @@ public class ModBlocks {
 
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
+    }
+
+    public static int fullLight(BlockState state){
+        return 15;
     }
 }
