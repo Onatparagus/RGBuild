@@ -1,0 +1,24 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "base": "rgbuild:block/spectrium_block_item",
+    "flip": "rgbuild:block/spectrium_block_item_flip",
+    "red": "rgbuild:block/spectrium_block_item_red",
+    "blue": "rgbuild:block/spectrium_block_item_blue",
+    "particle": "rgbuild:block/spectrium_block_item"
+  },
+  "elements": [
+    {
+      "from": [ 0, 0, 0 ],
+      "to":   [ 16, 16, 16 ],
+      "faces": {
+        "north": { "uv": [ 16, 0, 0, 16 ], "texture": "#red", "tintindex": 0 },
+        "east":  { "uv": [ 16, 16, 0, 0 ], "texture": "#base", "tintindex": 0 },
+        "south": { "uv": [ 16, 16, 0, 0 ], "texture": "#blue", "tintindex": 0 },
+        "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#base", "tintindex": 0 },
+        "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#flip", "tintindex": 0 },
+        "down":  { "uv": [ 16, 16, 0, 0 ], "texture": "#flip", "tintindex": 0 }
+      }
+    }
+  ]
+}

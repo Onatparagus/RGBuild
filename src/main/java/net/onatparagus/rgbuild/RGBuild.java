@@ -3,19 +3,28 @@ package net.onatparagus.rgbuild;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Position;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.FoliageColor;
+import net.minecraft.world.level.LevelTimeAccess;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.client.model.renderable.ITextureRenderTypeLookup;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -76,8 +85,7 @@ public class RGBuild
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
     }
-
-    private void commonSetup(final FMLCommonSetupEvent event)
+   private void commonSetup(final FMLCommonSetupEvent event)
     {
         /*// Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
@@ -103,6 +111,7 @@ public class RGBuild
         if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS){
             event.accept(ModBlocks.SPECTRIUM_BLOCK);
         }
+
     }
 
     /*public void addCreativeTab(CreativeModeTabEvent.Register event) {
@@ -136,29 +145,43 @@ public class RGBuild
             /*// Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());*/
-
         }
         @SubscribeEvent
         public static void registerBlockColors(RegisterColorHandlersEvent.Block event){
             event.getBlockColors().register(new BlockColor() {
                 @Override
-                public int getColor(BlockState p_92567_, @Nullable BlockAndTintGetter p_92568_, @Nullable BlockPos p_92569_, int p_92570_) {
-                    return 8431445;
+                public int getColor(BlockState p_92567_, @Nullable BlockAndTintGetter p_92568_, @Nullable BlockPos pos, int p_92570_) {
+                    return blockColorFromPos(pos);
                 }
                     },ModBlocks.SPECTRIUM_BLOCK.get());
         }
 
-    }
-/*
-    @Mod.EventBusSubscriber(value = Dist.CLIENT)
-    public static class RegistryEvents {
-        @SubscribeEvent
-        public static void registerBlockColors(final RegisterColorHandlersEvent.Block event){ //this event is never fired
-            event.getBlockColors().register(
-                    (s,w,p,i) -> {
-                        return FoliageColor.getBirchColor();
-                    },ModBlocks.SPECTRIUM_BLOCK.get());
+        private static int blockColorFromPos(BlockPos pos) {
+            int step = 8;
+            int revStep = 256/step;
+
+            //int timeVal = (int)Minecraft.getInstance().level.getDayTime();
+
+            int value = ((Math.abs(pos.getX()) + Math.abs(pos.getY()) + Math.abs(pos.getZ()))) % (step*6);
+            int valueTier = value/step;
+            switch(valueTier){
+                case 0:
+                    return 0xff0000 + ((value%step * revStep) << 8);
+                case 1:
+                    return 0x00ff00 + ((255-(value%step * revStep)) << 16);
+                case 2:
+                    return 0x00ff00 + ((value%step * revStep));
+                case 3:
+                    return 0x0000ff + (255-(value%step * revStep) << 8);
+                case 4:
+                    return 0x0000ff + ((value%step * revStep) << 16);
+                case 5:
+                    return 0xff0000 + (255-(value%step * revStep));
+                default:
+                    return 0xffffff;
+            }
+
         }
-        //other SubscribeEvents are in here
-    }*/
+    }
+
 }

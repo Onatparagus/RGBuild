@@ -25,11 +25,11 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> SPECTRIUM_ORE = registerBlock("spectrium_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(4f).requiresCorrectToolForDrops(), UniformInt.of(2,6)));
+                    .strength(4f).requiresCorrectToolForDrops().lightLevel(ModBlocks::oreLight), UniformInt.of(2,6)));
 
     public static final RegistryObject<Block> DEEPSLATE_SPECTRIUM_ORE = registerBlock("deepslate_spectrium_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(5f).requiresCorrectToolForDrops(), UniformInt.of(2,8)));
+                    .strength(5f).requiresCorrectToolForDrops().lightLevel(ModBlocks::oreLight), UniformInt.of(2,8)));
 
     public static final RegistryObject<Block> SPECTRIUM_BLOCK = registerBlock("spectrium_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST)
@@ -53,4 +53,5 @@ public class ModBlocks {
     public static int fullLight(BlockState state){
         return 15;
     }
+    public static int oreLight(BlockState state) {return 6;}
 }
