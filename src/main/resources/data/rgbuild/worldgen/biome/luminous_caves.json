@@ -65,6 +65,7 @@
       "minecraft:ore_lapis",
       "minecraft:ore_lapis_buried",
       "minecraft:ore_copper_large",
+      "minecraft:ore_spectrite",
       "minecraft:underwater_magma",
       "minecraft:disk_sand",
       "minecraft:disk_clay",
@@ -72,7 +73,7 @@
     ],
     [
       "minecraft:dripstone_cluster",
-      "minecraft:pointed_dripstone"
+      "minecraft:pointed_spectrite"
     ],
     [
       "minecraft:spring_water",

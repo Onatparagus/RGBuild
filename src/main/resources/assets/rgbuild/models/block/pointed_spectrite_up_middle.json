@@ -1,0 +1,7 @@
+{
+  "parent": "rgbuild:block/pointed_spectrite",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "rgbuild:block/pointed_spectrite_up_middle"
+  }
+}

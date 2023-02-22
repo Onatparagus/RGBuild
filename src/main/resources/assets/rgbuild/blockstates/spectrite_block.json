@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rgbuild:block/spectrite_block"
+    }
+  }
+}

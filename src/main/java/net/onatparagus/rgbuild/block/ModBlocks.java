@@ -1,14 +1,15 @@
 package net.onatparagus.rgbuild.block;
 
-import net.minecraft.client.model.ModelUtils;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -34,6 +35,14 @@ public class ModBlocks {
     public static final RegistryObject<Block> SPECTRIUM_BLOCK = registerBlock("spectrium_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST)
                     .strength(2f).requiresCorrectToolForDrops().lightLevel(ModBlocks::fullLight)));
+
+    public static final RegistryObject<Block> SPECTRITE = registerBlock("spectrite_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST)
+                    .strength(1f).requiresCorrectToolForDrops().lightLevel(ModBlocks::fullLight)));
+
+    public static final RegistryObject<Block> POINTED_SPECTRITE = registerBlock("pointed_spectrite",
+            () -> new PointedSpectriteBlock(BlockBehaviour.Properties.of(Material.AMETHYST)
+                    .strength(1f).requiresCorrectToolForDrops().lightLevel(ModBlocks::fullLight)));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name,block);

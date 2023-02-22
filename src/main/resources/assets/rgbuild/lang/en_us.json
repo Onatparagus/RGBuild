@@ -4,6 +4,8 @@
   "block.rgbuild.spectrium_ore": "Spectrium Ore",
   "block.rgbuild.deepslate_spectrium_ore": "Deepslate Spectrium Ore",
   "block.rgbuild.spectrium_block": "Block of Spectrium",
+  "block.rgbuild.spectrite_block": "Spectrite",
+  "block.rgbuild.pointed_spectrite": "Pointed Spectrite",
 
   "creativemodetab.rgbuild_tab": "RGBuild"
 }

@@ -36,6 +36,7 @@ import net.minecraftforge.event.CreativeModeTabEvent;
 import net.onatparagus.rgbuild.block.ModBlocks;
 import net.onatparagus.rgbuild.block.ModCreativeModeTab;
 import net.onatparagus.rgbuild.item.ModItems;
+import net.onatparagus.rgbuild.world.feature.ModFeatures;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
@@ -66,6 +67,7 @@ public class RGBuild
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModFeatures.register(modEventBus);
 
 
 
@@ -99,6 +101,8 @@ public class RGBuild
             event.accept(ModBlocks.SPECTRIUM_ORE);
             event.accept(ModBlocks.DEEPSLATE_SPECTRIUM_ORE);
             event.accept(ModBlocks.SPECTRIUM_BLOCK);
+            event.accept(ModBlocks.SPECTRITE);
+            event.accept(ModBlocks.POINTED_SPECTRITE);
         }
 
         if (event.getTab() == CreativeModeTabs.INGREDIENTS){
@@ -107,6 +111,8 @@ public class RGBuild
         if (event.getTab() == CreativeModeTabs.NATURAL_BLOCKS){
             event.accept(ModBlocks.SPECTRIUM_ORE);
             event.accept(ModBlocks.DEEPSLATE_SPECTRIUM_ORE);
+            event.accept(ModBlocks.SPECTRITE);
+            event.accept(ModBlocks.POINTED_SPECTRITE);
         }
         if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS){
             event.accept(ModBlocks.SPECTRIUM_BLOCK);
@@ -153,7 +159,7 @@ public class RGBuild
                 public int getColor(BlockState p_92567_, @Nullable BlockAndTintGetter p_92568_, @Nullable BlockPos pos, int p_92570_) {
                     return blockColorFromPos(pos);
                 }
-                    },ModBlocks.SPECTRIUM_BLOCK.get());
+                    },ModBlocks.SPECTRIUM_BLOCK.get(),ModBlocks.SPECTRITE.get(),ModBlocks.POINTED_SPECTRITE.get());
         }
 
         private static int blockColorFromPos(BlockPos pos) {
