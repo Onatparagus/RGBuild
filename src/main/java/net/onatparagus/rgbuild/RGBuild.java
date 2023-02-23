@@ -1,30 +1,13 @@
 package net.onatparagus.rgbuild;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
-import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Position;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
-import net.minecraft.world.level.FoliageColor;
-import net.minecraft.world.level.LevelTimeAccess;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.client.model.renderable.ITextureRenderTypeLookup;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -36,11 +19,8 @@ import net.minecraftforge.event.CreativeModeTabEvent;
 import net.onatparagus.rgbuild.block.ModBlocks;
 import net.onatparagus.rgbuild.block.ModCreativeModeTab;
 import net.onatparagus.rgbuild.item.ModItems;
-import net.onatparagus.rgbuild.world.feature.ModFeatures;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
-
-import static net.minecraft.world.level.biome.Biomes.PLAINS;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(RGBuild.MOD_ID)
@@ -67,7 +47,6 @@ public class RGBuild
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
-        ModFeatures.register(modEventBus);
 
 
 

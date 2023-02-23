@@ -3,6 +3,8 @@
   "values": [
     "rgbuild:spectrium_ore",
     "rgbuild:deepslate_spectrium_ore",
-    "rgbuild:spectrium_block"
+    "rgbuild:spectrium_block",
+    "rgbuild:spectrite_block",
+    "rgbuild:pointed_spectrite"
   ]
 }
